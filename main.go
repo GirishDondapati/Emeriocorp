@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	var initialEnergy int
+	/*var initialEnergy int
 	var noOfEnergies int
 	var noOfCoins int
 
@@ -28,13 +28,18 @@ func main() {
 	for a := 0; a < noOfEnergies; a++ {
 		fmt.Scanln(&temp)
 		coinsValues[a] = temp
-	}
+	}*/
+
+	initialEnergy := 1
+	//noOfEnergies := 5
+	noOfCoins := 5
+
+	coinsValues := []int{1, 5, 3, 3, 1}
+	energyValues := []int{3, 23, 9, 2, 2}
 
 	bestProfit := 0
 	if noOfCoins <= initialEnergy {
-		for a := 0; a < noOfEnergies; a++ {
-			bestProfit = bestProfit + coinsValues[a]
-		}
+		bestProfit = getEnoughEnergy(initialEnergy, coinsValues, energyValues, noOfCoins, 0)
 		fmt.Println(bestProfit)
 		return
 	}
@@ -45,13 +50,24 @@ func main() {
 
 func getBestProfit(initialEnergy int, coinsValues []int, energyValues []int, noOfHouses int) int {
 	bestProfit := 0
-	for i := 0; i < noOfHouses; i++ {
-		curHouseE := energyValues[i]
-		curHouseC := coinsValues[i]
+	i := 0
+	for i < noOfHouses {
+		if initialEnergy <= 0 {
+			initialEnergy = energyValues[i]
+			i++
+		}
 
-		if initialEnergy <= 0 
-			initialEnergy = curHouseE
+		for initialEnergy > 0 && initialEnergy < noOfHouses-i {
 
+		}
 	}
-	return 1
+	return bestProfit
+}
+
+func getEnoughEnergy(initialEnergy int, coinsValues []int, energyValues []int, noOfHouses int, readIndex int) int {
+	bestProfit := 0
+	for a := readIndex; a < noOfHouses; a++ {
+		bestProfit = bestProfit + coinsValues[a]
+	}
+	return bestProfit
 }
