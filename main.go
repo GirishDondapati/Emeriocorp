@@ -45,6 +45,18 @@ func main() {
 
 	noOfHouses = len(energyValues)
 
+	if noOfHouses <= initialEnergy {
+		result = getEnoughEnergy(coinsValues, noOfHouses, 0)
+		fmt.Println(result)
+		return
+	}
+
+	if initialEnergy == 0 && energyValues[0] == 0 {
+		result = coinsValues[0]
+		fmt.Println(result)
+		return
+	}
+
 	rootNode := Node{left: nil, right: nil, nodeStatus: false, totalCoins: 0, initialEnergy: initialEnergy}
 	firstHouseCoins := coinsValues[0]
 	firstHouseEnergy := energyValues[0]
@@ -109,7 +121,7 @@ func getEnoughEnergy(coinsValues []int, noOfHouses int, readIndex int) int {
 }
 
 func (root *Node) PrintPre() {
-	fmt.Println("[", root.totalCoins, root.initialEnergy, "]")
+	//fmt.Println("[", root.totalCoins, root.initialEnergy, "]")
 	if root.totalCoins > result {
 		result = root.totalCoins
 	}
